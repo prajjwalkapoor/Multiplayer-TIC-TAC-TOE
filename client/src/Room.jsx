@@ -103,6 +103,10 @@ export default function Room({ roomid, socket, currentPlayer, notify, toast }) {
   };
 
   const resethandler = () => {
+    if (ready === false) {
+      notify("Waiting for Player 2 to join");
+      return;
+    }
     socket.emit("reset", roomid);
   };
   useEffect(() => {
