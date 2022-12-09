@@ -54,6 +54,15 @@ function App() {
       ) : (
         <Home setRoomid={setRoomid} />
       )}
+      <div className='footer'>
+        <a
+          href='https://github.com/prajjwalkapoor'
+          target='_blank'
+          rel='noreferrer'
+        >
+          Made by Prajjwal Kapoor
+        </a>
+      </div>
     </div>
   );
 }
