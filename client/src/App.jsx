@@ -6,7 +6,7 @@ import Room from "./Room";
 import io from "socket.io-client";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
-const socket = io("http://localhost:5000");
+const socket = io("https://Multiplayer-TIC-TAC-TOE.prajjwalkapoor.repl.co");
 function App() {
   const [roomid, setRoomid] = useState(null);
   const [player, setPlayer] = useState(1);
