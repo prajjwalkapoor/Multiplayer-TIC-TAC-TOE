@@ -1,8 +1,10 @@
 import { useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Home from "./Home";
 import Room from "./Room";
 import io from "socket.io-client";
+import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
 const socket = io("http://localhost:5000");
 function App() {
@@ -11,26 +13,44 @@ function App() {
   useEffect(() => {
     if (roomid) {
       socket.emit("join-room", roomid);
-      socket.on("player2-joined", () => {
+      socket.on("assign-player-2", () => {
         console.log("player 2 joined");
         setPlayer(2);
       });
       socket.on("room-full", () => {
         console.log("room full");
-
         setRoomid(null);
+        setTimeout(() => {
+          notify("Room is Full");
+        }, 500);
       });
     }
     return () => {
       socket.off("room-full");
-      socket.off("player-2-joined");
+      socket.off("assign-player-2");
     };
   }, [roomid]);
+
+  function notify(message) {
+    toast(message, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      theme: "dark",
+    });
+  }
   console.log(player, "player");
   return (
     <div className='App'>
+      <ToastContainer />
       {roomid ? (
-        <Room currentPlayer={player} socket={socket} roomid={roomid} />
+        <Room
+          notify={notify}
+          toast={toast}
+          currentPlayer={player}
+          socket={socket}
+          roomid={roomid}
+        />
       ) : (
         <Home setRoomid={setRoomid} />
       )}

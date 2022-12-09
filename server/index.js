@@ -22,8 +22,9 @@ io.on("connection", (server) => {
       io.sockets.adapter.rooms.get(roomId) &&
       io.sockets.adapter.rooms.get(roomId).size === 1
     ) {
-      server.emit("player2-joined");
+      server.emit("assign-player-2");
       server.join(roomId);
+      io.to(roomId).emit("player-2-connected");
     } else {
       server.join(roomId);
     }
@@ -32,6 +33,9 @@ io.on("connection", (server) => {
   server.on("sync-board", (board, roomId, playerChance) => {
     console.log("syncing board", board, roomId, playerChance);
     server.broadcast.to(roomId).emit("get-board", board, playerChance);
+  });
+  server.on("reset", (roomId) => {
+    io.in(roomId).emit("reset-board");
   });
   server.on("disconnect", () => {
     server.leave();

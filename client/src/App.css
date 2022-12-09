@@ -56,18 +56,18 @@
   font-size: 2em;
 }
 .currentChance {
-  color: #646cff;
+  color: #bb86fc;
 }
 
 .roomid {
   background-color: #1a1a1a;
-  color: #646cff;
+  color: #bb86fc;
   padding: 0.1em 0.5em;
   border-radius: 0.5em;
   transition: all 0.25s ease-in-out;
 }
 .roomid:hover {
-  background-color: #646cff;
+  background-color: #bb86fc;
   color: #1a1a1a;
   cursor: pointer;
 }
@@ -95,5 +95,11 @@
   margin: 0.5em;
   font-size: 1.5em;
   background-color: #1a1a1a;
-  color: #646cff;
+  color: #bb86fc;
+}
+
+.reset {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
 }

@@ -9,7 +9,7 @@ export default function Home({ setRoomid }) {
     if (selected === "create") {
       setCreateRoomLoading(true);
       setTimeout(() => {
-        setRoomid("1234");
+        setRoomid(String(Math.floor(Math.random() * 1000000)));
         setCreateRoomLoading(false);
       }, 1000);
     }
