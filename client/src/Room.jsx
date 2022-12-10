@@ -57,6 +57,19 @@ export default function Room({ roomid, socket, currentPlayer, notify, toast }) {
         setMessage("Player 2 Won the match");
       }
     }
+    if (
+      board[0][2] === board[1][1] &&
+      board[0][2] === board[2][0] &&
+      board[0][2] !== ""
+    ) {
+      if (board[0][2] === "X") {
+        setWinner(1);
+        setMessage("Player 1 Won the match");
+      } else {
+        setWinner(2);
+        setMessage("Player 2 Won the match");
+      }
+    }
 
     // check draw
     let draw = true;
